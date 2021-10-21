@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +30,15 @@ namespace _4
 
             services.AddDistributedMemoryCache();
             services.AddSession();
+
+            services.AddControllersWithViews(options =>
+            {
+                options.CacheProfiles.Add("CacheProfile",
+                    new CacheProfile()
+                    {
+                        Duration = 258
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
