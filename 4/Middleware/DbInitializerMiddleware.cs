@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using _4;
+using _4.Controllers;
+using _4.Data;
 
 namespace _4.Middleware
 {
@@ -17,7 +18,7 @@ namespace _4.Middleware
             _next = next;
         }
 
-        public Task Invoke(HttpContext context, IServiceProvider serviceProvider, TvChannelContext db)
+        public Task Invoke(HttpContext context, IServiceProvider serviceProvider, publishing_houseContext db)
         {
             if (!(context.Session.Keys.Contains("starting")))
             {
@@ -27,5 +28,14 @@ namespace _4.Middleware
 
             return _next.Invoke(context);
         }
+    }
+
+    public static class DbInitializerExtensions
+    {
+        public static IApplicationBuilder UseDbInitializer(this IApplicationBuilder builder)
+        {
+            return builder.UseMiddleware<DbInitializerMiddleware>();
+        }
+
     }
 }
