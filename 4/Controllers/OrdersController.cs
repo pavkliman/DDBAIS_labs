@@ -3,23 +3,24 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using _4.Data;
 
 namespace _4.Controllers
 {
-    public class CustomersController : Controller
+    public class OrdersController : Controller
     {
         private publishing_houseContext db;
 
-        public CustomersController(publishing_houseContext context)
+        public OrdersController(publishing_houseContext context)
         {
             db = context;
         }
 
-        [ResponseCache(CacheProfileName = "CasheProfile")]
+        [ResponseCache(CacheProfileName = "Profilename")]
         public IActionResult Index()
         {
-            return View(db.Customers.Take(20).ToList());
+            return View(db.Orders.Include(n => n.Customer).Take(20).ToList());
         }
     }
 }
