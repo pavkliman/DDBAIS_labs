@@ -84,7 +84,8 @@ namespace _4.Data
 
                     rowIndex++;
                 }
-                db.SaveChanges();
+
+                
             }
 
             if (!db.Contracts.Any())
@@ -118,7 +119,7 @@ namespace _4.Data
                     rowIndex++;
                 }
 
-                db.SaveChanges();
+               
             }
 
             if (!db.Customers.Any())
@@ -135,8 +136,9 @@ namespace _4.Data
                     customerName = GetString(minStringLength, maxStringLength);
                     db.Customers.Add(new Customer { Customername = customerName });
                     rowIndex++;
+                     
                 }
-                db.SaveChanges();
+               
             }
 
             if (!db.Orders.Any())
@@ -183,9 +185,9 @@ namespace _4.Data
 
                     rowIndex++;
                 }
-
-                db.SaveChanges();
+                
             }
+        
         }
 
         private static string GetString(int minStringLength, int maxStringLength)

@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using _4.Data;
+using _4.Middleware;
 
 namespace _4
 {
@@ -54,6 +56,10 @@ namespace _4
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseSession();
+            app.UseDbInitializer();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
