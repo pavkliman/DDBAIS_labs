@@ -26,7 +26,7 @@ namespace _4.Data
             {
                 string fio;
 
-                rowCount = 700;
+                rowCount = 7000;
                 rowIndex = 0;
                 while (rowIndex < rowCount)
                 {
@@ -64,7 +64,7 @@ namespace _4.Data
                     basecost = random.Next(200, 2000);
                     finishcost = random.Next(500, 5000);
                     salary = random.Next(200, 5000);
-                    authorId = random.Next(1, 701);
+                    authorId = random.Next(1, 7001);
                     do
                     {
                         exitDate = GetDateTime();
@@ -85,7 +85,7 @@ namespace _4.Data
                     rowIndex++;
                 }
 
-                
+                db.SaveChanges();
             }
 
             if (!db.Contracts.Any())
@@ -107,7 +107,7 @@ namespace _4.Data
                     while (date.Year < random.Next(2000, 2025) &&
                     deadline.Year < random.Next(2000, 2025));
 
-                    authorId = random.Next(1, 701);
+                    authorId = random.Next(1, 7001);
 
                     db.Contracts.Add(new Contract
                     {
@@ -118,8 +118,7 @@ namespace _4.Data
 
                     rowIndex++;
                 }
-
-               
+                db.SaveChanges();
             }
 
             if (!db.Customers.Any())
@@ -138,7 +137,7 @@ namespace _4.Data
                     rowIndex++;
                      
                 }
-               
+                db.SaveChanges();
             }
 
             if (!db.Orders.Any())
@@ -185,7 +184,7 @@ namespace _4.Data
 
                     rowIndex++;
                 }
-                
+                db.SaveChanges();
             }
         
         }
