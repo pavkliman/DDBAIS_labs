@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<Author>
 @{
-    ViewData["Title"] = "Table 'Authors'";
+    ViewData["Title"] = "Таблица 'Авторы'";
 }
 <h1>@ViewData["Title"]</h1>
 
 <p align="center">
     <table border="1">
         <tr>
-            <td>AuthorId</td>
-            <td>Name</td>
+            <td>Id автора</td>
+            <td>Имя автора</td>
         </tr>
 
          @foreach (var author in Model)
