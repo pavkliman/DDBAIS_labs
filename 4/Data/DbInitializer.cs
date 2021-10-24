@@ -107,7 +107,7 @@ namespace _4.Data
                     while (date.Year < random.Next(2000, 2025) &&
                     deadline.Year < random.Next(2000, 2025));
 
-                    authorId = random.Next(1, 7001);
+                    authorId = random.Next(1, 10001);
 
                     db.Contracts.Add(new Contract
                     {
@@ -168,7 +168,7 @@ namespace _4.Data
 
                     exemplairs = random.Next(100, 2000);
                     totalSum = random.Next(10000, 2000000);
-                    customerId = random.Next(1, 701);
+                    customerId = random.Next(1, 1001);
                     bookId = random.Next(1, 25001);
 
                     db.Orders.Add(new Order

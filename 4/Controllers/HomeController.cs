@@ -6,24 +6,22 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using _4.Data;
 
 namespace _4.Controllers
 {
     public class HomeController : Controller
     {
+        private publishing_houseContext db;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, publishing_houseContext context)
         {
             _logger = logger;
+            db = context;
         }
 
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }
