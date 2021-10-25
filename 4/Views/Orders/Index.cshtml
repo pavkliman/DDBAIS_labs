@@ -1,5 +1,34 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<Order>
 @{
+    ViewData["Title"] = "Таблица 'Заказы'";
 }
+<h1>@ViewData["Title"]</h1>
+
+<p align="center">
+    <table border="1">
+        <tr>
+            <td>Id заказа</td>
+            <td>Наименование заказа</td>
+            <td>Дата принятия заказа</td>
+            <td>Дата исполнения заказа</td>
+            <td>Количество экземпляров</td>
+            <td>Сумма заказа</td>
+            <td>Id заказчика</td>
+            <td>Id книги</td>
+        </tr>
+
+        @foreach (var order in Model)
+        {
+    <tr>
+        <td>@order.OrderId</td>
+        <td>@order.Ordername</td>
+        <td>@order.Startdate</td>
+        <td>@order.Finishdate</td>
+        <td>@order.Exemplairs</td>
+        <td>@order.Totalsum</td>
+        <td>@order.CustomerId</td>
+        <td>@order.BookId</td>
+    </tr>
+        }
+    </table>
+</p>

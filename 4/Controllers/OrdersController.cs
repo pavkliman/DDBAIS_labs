@@ -17,7 +17,7 @@ namespace _4.Controllers
             db = context;
         }
 
-        [ResponseCache(CacheProfileName = "Profilename")]
+        [ResponseCache(CacheProfileName = "CacheProfile")]
         public IActionResult Index()
         {
             return View(db.Orders.Include(n => n.Customer).Take(20).ToList());
