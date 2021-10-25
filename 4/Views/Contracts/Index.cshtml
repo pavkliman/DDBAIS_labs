@@ -1,5 +1,26 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<Contract>
 @{
+    ViewData["Title"] = "Таблица 'Контракты'";
 }
+<h1>@ViewData["Title"]</h1>
+
+<p align="center">
+    <table border="1">
+        <tr>
+            <td>Id контракта</td>
+            <td>Дата заключения</td>
+            <td>Срок исполнения</td>
+            <td>Id автора</td>
+        </tr>
+
+        @foreach (var contract in Model)
+        {
+            <tr>
+                <td>@contract.ContractId</td>
+                <td>@contract.Date</td>
+                <td>@contract.Deadline</td>
+                <td>@contract.AuthorId</td>
+            </tr>
+        }
+    </table>
+</p>
