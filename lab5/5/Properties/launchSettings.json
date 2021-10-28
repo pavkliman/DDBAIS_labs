@@ -1,10 +1,10 @@
-{
+﻿{
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:8456",
-      "sslPort": 44311
+      "applicationUrl": "http://localhost:10915",
+      "sslPort": 44315
     }
   },
   "profiles": {
@@ -15,24 +15,14 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "_4": {
+    "_5": {
       "commandName": "Project",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
       "dotnetRunMessages": "true",
-      "applicationUrl": "https://localhost:5001;http://localhost:5000"
-    },
-    "WSL": {
-      "commandName": "WSL2",
       "launchBrowser": true,
-      "launchUrl": "https://localhost:5001",
+      "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
-        "ASPNETCORE_URLS": "https://localhost:5001;http://localhost:5000",
         "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "distributionName": ""
+      }
     }
   }
 }
