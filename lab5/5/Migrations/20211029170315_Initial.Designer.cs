@@ -9,8 +9,8 @@ using _5.Models;
 
 namespace _5.Migrations
 {
-    [DbContext(typeof(PublishingDbContext))]
-    [Migration("20211029080802_Initial")]
+    [DbContext(typeof(PublishingLabContext))]
+    [Migration("20211029170315_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

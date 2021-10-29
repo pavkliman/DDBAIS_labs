@@ -6,12 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace _5.Models
 {
-    public class PublishingDbContext : DbContext
+    public class PublishingLabContext : DbContext
     {
-        public PublishingDbContext(DbContextOptions<PublishingDbContext> options): base(options)
+        public PublishingLabContext(DbContextOptions<PublishingLabContext> options) : base(options)
         {
         }
-
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Contract> Contracts { get; set; }

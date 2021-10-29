@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace _5.Models
 {
-    public partial class Customer
+    public partial class  Customer
     {
         public Customer()
         {

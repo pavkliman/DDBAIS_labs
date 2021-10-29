@@ -8,8 +8,8 @@ using _5.Models;
 
 namespace _5.Migrations
 {
-    [DbContext(typeof(PublishingDbContext))]
-    partial class PublishingDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(PublishingLabContext))]
+    partial class PublishingLabContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
