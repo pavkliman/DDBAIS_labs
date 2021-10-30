@@ -19,8 +19,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\" />
-    <Folder Include="Infrastructure\" />
-    <Folder Include="TagHelpers\" />
   </ItemGroup>
 
 </Project>
