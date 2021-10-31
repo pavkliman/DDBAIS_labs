@@ -11,8 +11,10 @@ namespace _5.ViewModels
     {
         public IEnumerable<Order> Orders { get; set; }
         public FilterOrderViewModel FilterOrderViewModel { get; set; }
-        public IEnumerable<Author> Authors { get; set; }
-        public FilterAuthorViewModel FilterAuthorViewModel { get; set; }
+        public IEnumerable<Contract> Contracts { get; set; }
+        public FilterContractViewModel FilterContractViewModel { get; set; }
+        public IEnumerable<Book> Books { get; set; }
+        public FilterBookViewModel FilterBookViewModel { get; set; }
         public PageViewModel PageViewModel { get; set; }
         public SortViewModel SortViewModel { get; set; }
     }
