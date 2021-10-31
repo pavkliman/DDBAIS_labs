@@ -12,9 +12,9 @@ namespace _5.Data
         {
             db.Database.EnsureCreated();
 
-            int authors_number = 150;
+            int authors_number = 15;
             string authorname;
-            int books_number = 30000;
+            int books_number = 30;
             string bookName;
             int total;
             DateTime exitDate;
@@ -23,10 +23,10 @@ namespace _5.Data
             decimal salary;
             DateTime date;
             DateTime deadLine;
-            int contract_number = 30000;
-            int customers_number = 150;
+            int contract_number = 30;
+            int customers_number = 15;
             string customername;
-            int orders_number = 30000;
+            int orders_number = 30;
             string orderName;
             DateTime startdate;
             DateTime finishDate;
