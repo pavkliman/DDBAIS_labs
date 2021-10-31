@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _5.Controllers
 {
-    public class FiltredAuthorsController : Controller
+    public class FiltredContractsController : Controller
     {
         public IActionResult Index()
         {

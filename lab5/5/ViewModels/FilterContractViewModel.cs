@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace _5.ViewModels.Users
+namespace _5.ViewModels
 {
-    public class FilterAuthorViewModel
+    public class FilterContractViewModel
     {
     }
 }
