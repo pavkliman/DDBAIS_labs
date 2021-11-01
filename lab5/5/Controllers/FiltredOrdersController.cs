@@ -16,7 +16,7 @@ namespace _5.Controllers
     {
 
         private readonly PublishingLabContext _context;
-        private FilterOrderViewModel _operation = new FilterOrderViewModel
+        private FilterOrderViewModel _order = new FilterOrderViewModel
         {
             CustomerName = "",
             BookName = ""
@@ -27,16 +27,71 @@ namespace _5.Controllers
             _context = context;
         }
 
-        [SetToSession("SortState")]
+        [SetToSession("SortState")] 
         public IActionResult Index(SortState sortOrder)
         {
-            var sessionOperation = HttpContext.Session.Get("Operation");
+            var sessionOrders = HttpContext.Session.Get("Orders");
             var sessionSortState = HttpContext.Session.Get("SortState");
-            if (sessionOperation != null)
-                _operation = Transformations.DictionaryToObject<FilterOrderViewModel>(sessionOperation);
+            if (sessionOrders != null)
+                _order = Transformations.DictionaryToObject<FilterOrderViewModel>(sessionOrders);
             if ((sessionSortState != null))
                 if ((sessionSortState.Count > 0) & (sortOrder == SortState.No)) sortOrder = (SortState)Enum.Parse(typeof(SortState), sessionSortState["sortOrder"]);
-            return View();
+
+            IQueryable<Order> publishingLabContext = _context.Orders;
+            publishingLabContext = Sort_Search(publishingLabContext, sortOrder, _order.BookName ?? "", _order.CustomerName ?? "");
+
+
+            OrdersViewModel orders = new OrdersViewModel
+            {
+                Orders = publishingLabContext,
+                SortViewModel = new SortViewModel(sortOrder),
+                FilterOrderViewModel = _order
+            };
+            return View(orders);
+        }
+        [HttpPost]
+        [SetToSession("Operation")] 
+        public IActionResult Index(FilterOrderViewModel order)
+        {
+            var sessionSortState = HttpContext.Session.Get("SortState");
+            var sortOrder = new SortState();
+            if (sessionSortState.Count > 0)
+                sortOrder = (SortState)Enum.Parse(typeof(SortState), sessionSortState["sortOrder"]);
+
+            IQueryable<Order> publishingLabContext = _context.Orders;
+            publishingLabContext = Sort_Search(publishingLabContext, sortOrder, _order.BookName ?? "", _order.CustomerName ?? "");
+
+            OrdersViewModel orders = new OrdersViewModel
+            {
+                Orders = publishingLabContext,
+                SortViewModel = new SortViewModel(sortOrder),
+                FilterOrderViewModel = order
+            };
+
+            return View(orders);
+        }
+        private IQueryable<Order> Sort_Search(IQueryable<Order> orders, SortState sortOrder, string searchBookName, string searchCustomerName)
+        {
+            switch (sortOrder)
+            {
+                case SortState.BookNameAsc:
+                    orders = orders.OrderBy(s => s.Book.Name);
+                    break;
+                case SortState.BookNameDesc:
+                    orders = orders.OrderByDescending(s => s.Book.Name);
+                    break;
+                case SortState.CustomerNameAsc:
+                    orders = orders.OrderBy(s => s.Customer.Customername);
+                    break;
+                case SortState.CustomerNameDesc:
+                    orders = orders.OrderByDescending(s => s.Customer.Customername);
+                    break;
+            }
+            orders = orders.Include(o => o.Book).Include(o => o.Customer)
+                .Where(o => o.Customer.Customername.Contains(searchCustomerName ?? "")
+                & o.Book.Name.Contains(searchBookName ?? ""));
+
+            return orders;
         }
     }
 }
