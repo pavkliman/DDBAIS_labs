@@ -32,6 +32,8 @@ namespace _5.Controllers
             var sessionSortState = HttpContext.Session.Get("SortState");
             if (sessionBook != null)
                 _book = Transformations.DictionaryToObject<FilterBookViewModel>(sessionBook);
+            if ((sessionSortState != null))
+                if ((sessionSortState.Count > 0) & (sortOrder == SortState.No)) sortOrder = (SortState)Enum.Parse(typeof(SortState), sessionSortState["sortOrder"]);
             IQueryable<Book> publishingLabContext = _context.Books;
             publishingLabContext = Sort_Search(publishingLabContext, sortOrder, _book.BookName ?? "");
 
@@ -49,24 +51,24 @@ namespace _5.Controllers
         public IActionResult Index(FilterBookViewModel book)
         {
             var sessionSortState = HttpContext.Session.Get("SortState");
-            var sortBook = new SortState();
+            var sortOrder = new SortState();
             if (sessionSortState.Count > 0)
-                sortBook = (SortState)Enum.Parse(typeof(SortState), sessionSortState["sortBook"]);
+                sortOrder = (SortState)Enum.Parse(typeof(SortState), sessionSortState["sortOrder"]);
             IQueryable<Book> publishingLabContext = _context.Books;
-            publishingLabContext = Sort_Search(publishingLabContext, sortBook, book.AuthorName ?? "");
+            publishingLabContext = Sort_Search(publishingLabContext, sortOrder, book.AuthorName ?? "");
 
             BooksViewModel books = new BooksViewModel
             {
                 Books = publishingLabContext,
-                SortViewModel = new SortViewModel(sortBook),
+                SortViewModel = new SortViewModel(sortOrder),
                 FilterBookViewModel = book
             };
             return View(books);
         }
 
-        private IQueryable<Book> Sort_Search(IQueryable<Book> books, SortState sortBook, string searchAuthorName)
+        private IQueryable<Book> Sort_Search(IQueryable<Book> books, SortState sortOrder, string searchAuthorName)
         {
-            switch (sortBook)
+            switch (sortOrder)
             {
                 case SortState.AuthorNameAsc:
                     books = books.OrderBy(s => s.Author.Fio);
