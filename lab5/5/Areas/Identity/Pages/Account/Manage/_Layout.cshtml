@@ -1,13 +1,20 @@
-﻿<!DOCTYPE html>
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-</head>
-<body>
-    <div>
-        @RenderBody()
+<h2>Управление учетной записью</h2>
+
+<div>
+    <h4>Изменить установки</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_ManageNav" />
+        </div>
+        <div class="col-md-9">
+            @RenderBody()
+        </div>
     </div>
-</body>
-</html>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}
