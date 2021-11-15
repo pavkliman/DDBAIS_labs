@@ -1,8 +1,83 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model HomeViewModel
+@{ ViewData["Title"] = "Издательство"; }
+<table border="0">
+    <tr>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+        <td>
+            <table border=1>
+                <caption>Авторы</caption>
+
+                <tr>
+                    <th>Код автора</th>
+                    <th>Имя автора</th>
+                    <th></th>
+
+                </tr>
+                @foreach (var author in Model.Authors)
+                {
+            <tr>
+                <td>@author.AuthorId</td>
+                <td>@author.Fio</td>
+                <td><a href="~/Authors/Edit/@author.AuthorId">Редактировать</a></td>
+            </tr>
+                    
+                }
+            </table>
+        </td>
+
+        <td>
+            <table border=1>
+                <caption>Книги</caption>
+
+                <tr>
+                    <th>Код книги</th>
+                    <th>Название книги</th>
+                    <th>Тираж</th>
+                    <th>Дата выхода из печати</th>
+                    <th>Себестоимость</th>
+                    <th>Розничная цена</th>
+                    <th>Гонорар автора</th>
+                    <th>Автор</th>
+                    <th></th>
+
+                </tr>
+                @foreach (var book in Model.Books)
+                {
+            <tr>
+                <td>@book.BookId</td>
+                <td>@book.BookName</td>
+                <td>@book.Total</td>
+                <td>@book.ExitDate</td>
+                <td>@book.BaseCost</td>
+                <td>@book.FinishCost</td>
+                <td>@book.Salary</td>
+                <td>@book.AuthorName</td>
+                <td><a href="~/Books/Edit/@book.BookId">Редактировать</a></td>
+            </tr>            }
+            </table>
+        </td>
+    </tr>
+</table>
+<table border=1>
+    <caption>Контракты</caption>
+
+    <tr>
+        <th>Код контракта</th>
+        <th>Дата заключения</th>
+        <th>Дата расторжения</th>
+        <th>Автор</th>
+        <th></th>
+
+    </tr>
+    @foreach (var contract in Model.Contracts)
+    {
+<tr>
+    <td>@contract.ContractId</td>
+    <td>@contract.Date</td>
+    <td>@contract.DeadLine</td>
+    <td>@contract.AuthorName</td>
+    <td><a href="~/Contracts/Edit/@contract.ContractId">Редактировать</a></td>
+</tr>}
+</table>
+
+

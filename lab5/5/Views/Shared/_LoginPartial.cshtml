@@ -1,5 +1,31 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using Microsoft.AspNetCore.Identity
+@using _5.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+<form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)!</a>
+        </li>
+
+        @if (User.IsInRole("admin"))
+        {
+<li>
+    <a asp-area="" asp-controller="Users" asp-action="Index" title="Пользователи">Пользователи</a>
+</li>}
+        <li>
+            <a asp-area="Identity" asp-page="/Account/Manage/ChangePassword" title="Сменить пароль">Сменить пароль</a>
+        </li>
+        <li>
+            <button type="submit" class="btn btn-link navbar-btn navbar-link">Выход</button>
+        </li>
+    </ul>
+</form> }
+            else
+            {
+<ul class="nav navbar-nav navbar-right">
+    <li><a asp-area="Identity" asp-page="/Account/Login">Вход</a></li>
+</ul>}
