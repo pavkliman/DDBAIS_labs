@@ -42,9 +42,13 @@ namespace _5
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            string connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<PublishingLabContext>(options => options.UseSqlServer(connection));
-            services.AddMvc();
+            string connectionDB = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<PublishingLabContext>(options => options.UseSqlServer(connectionDB));
+            string connectionUsers = Configuration.GetConnectionString("IdentityConnection");
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+                    .AddEntityFrameworkStores<ApplicationDbContext>()
+                    .AddDefaultUI()
+                    .AddDefaultTokenProviders();
 
             //добавление сессии
             services.AddDistributedMemoryCache();
